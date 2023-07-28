@@ -10,12 +10,18 @@ const list = () => {
     return TodoModel.list();
 };
 
-const getById= (id) => {};
+const getById= (id) => {
+    return TodoModel.findOne({_id: id});
+};
 
 
-const updateByID = (id, payload) => {};
+const updateByID = (id, payload) => {
+    return TodoModel.updateOne({_id: id});
+};
 
-const remove = (id) => {};
+const remove = (id) => {
+    return TodoModel.updateOne({_id: id});
+};
 
 
 module.exports= {create, list, getById, updateByID, remove}
