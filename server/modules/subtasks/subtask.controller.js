@@ -1,5 +1,4 @@
 const subtaskModel = require('./subtask.model');
-const Model = require('./subtask.model');
 
 // CRUD
 
@@ -8,8 +7,7 @@ const create = (payload) => {
     return subtaskModel.create(payload);
 };
     
-const list = () => {
-    
+const list = () => {    
     return subtaskModel.list();
 };
 
@@ -23,8 +21,8 @@ const updateByID = (id, payload) => {
 };
 
 const remove = (id) => {
-    return subtaskModel.deleteOne({ _id: id});
+    return subtaskModel.deleteOne({_id: id});
 };
 
 
-module.exports= {create, list, getById, updateByID, remove}
+module.exports = {create,updateByID,remove,getById,list}

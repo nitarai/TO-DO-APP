@@ -1,14 +1,14 @@
 1. Title component
-2. TODO component
+2. Todo component
     a. Add new task button
     b. Input
-    c. label
-3. list data component
-    a. chechbox
+    c. Label
+3.List Data component
+    a. checkbox
     b. task name
-    c. delete button 
-    d.  ass subtask (TODO component ) Reusable
-4. Conditional rendering
-    a. If task, list the task
-    b. else, " No subtask found ...." alert 
+    c. delete button
+    d. add subtask (TODO component) Reusable
+4. conditional rendering
+    a.  if task,list task
+    b. else,"no subtasks found..." alert
 5. Notification popup
