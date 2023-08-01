@@ -3,7 +3,7 @@ const router = require('express').Router();
 const todoController= require("./todo.controller")
 
 //Read
-router.get('/', (req, res)=>{
+router.get('/', async(req, res)=>{
     const results = await todoController.list();
     res.json({data: results});
 });
@@ -12,6 +12,12 @@ router.get('/', (req, res)=>{
 router.post("/",async(req,res ) =>{
     const todoResult = await todoController.create(req.body);
     res.json({data: todoResult});
+});
+ 
+// read by id
+router.get('/:id', async(req, res)=>{
+    const results= await todoController.getById(req.params.id);
+    res.json({data: results});
 });
 
 //read by id

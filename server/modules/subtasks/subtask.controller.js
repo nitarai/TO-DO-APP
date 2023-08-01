@@ -9,18 +9,22 @@ const create = (payload) => {
 };
     
 const list = () => {
+    
     return subtaskModel.list();
 };
 
 const getById= (id) => {
-    return subtaskModel.findOne({_id: id});
+    return subtaskModel.findOne({ _id:id});
 };
 
 
 const updateByID = (id, payload) => {
-    return subtaskModel.updateOne({_id: id});
+    return subtaskModel.updateOne({ _id : id}, payload);
 };
 
 const remove = (id) => {
-    return subtaskModel.updateOne({_id: id});
+    return subtaskModel.deleteOne({ _id: id});
 };
+
+
+module.exports= {create, list, getById, updateByID, remove}
