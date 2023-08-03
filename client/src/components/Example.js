@@ -105,49 +105,76 @@
 
 // updating objects and arrays in state
 
-import {useState} from "react";
-import Button from 'react-bootstrap/Button';
+// import {useState} from "react";
+// import Button from 'react-bootstrap/Button';
 
-const Car = () => {
-    const [car, setCar] = useState({
-      brand: "Ford",
-      model: "Mustang",
-      year: "1964",
-      color: "red",
-    });
+// const Car = () => {
+//     const [car, setCar] = useState({
+//       brand: "Ford",
+//       model: "Mustang",
+//       year: "1964",
+//       color: "red",
+//     });
 
-const [customColor, setCustomColor] = useState('');
+// const [customColor, setCustomColor] = useState('');
 
-    const updateColor = (newColor) => {
-        setCar((previousState) => {
-            return { ...previousState, color :newColor};
-        });
-    };
+//     const updateColor = (newColor) => {
+//         setCar((previousState) => {
+//             return { ...previousState, color :newColor};
+//         });
+//     };
 
-const handleCustomColorChange = (event) => {
-        setCustomColor(event.target.value);
-      };
+// const handleCustomColorChange = (event) => {
+//         setCustomColor(event.target.value);
+//       };
       
-const handleApplyCustomColor = () => {
-        updateColor(customColor);
-        setCustomColor(''); // Clear the input field after applying the color
-      };
+// const handleApplyCustomColor = () => {
+//         updateColor(customColor);
+//         setCustomColor(''); // Clear the input field after applying the color
+//       };
 
-    return (
+//     return (
+//         <>
+//         <h1>My {car.brand} </h1>
+//         <p>
+//             It is a color {car.color} {car.model} from {car.year}.
+//         </p>
+//         <input
+//         type="text"
+//         value={customColor}
+//         onChange={handleCustomColorChange}
+//         placeholder="Enter custom color"
+//       />
+//         <Button variant='warning' onClick= {handleApplyCustomColor}> Apply</Button>   
+//         </>
+//     );
+// }
+// export default Car;
+
+import { useState, useEffect } from "react";
+import axios from "axios";
+function Example(){
+  const [data, setData] = useState([]);
+
+  useEffect(() => {  
+    const fetchData = async ()=> {
+      const {data} = await axios("http://localhost:3000/api/v1/todos"); // {}=result - result.data
+      setData(data.data)
+    };
+    fetchData();
+  }, []);
+  return (
+    <>
+      {data && data.length > 0 && (
         <>
-        <h1>My {car.brand} </h1>
-        <p>
-            It is a color {car.color} {car.model} from {car.year}.
-        </p>
-        <input
-        type="text"
-        value={customColor}
-        onChange={handleCustomColorChange}
-        placeholder="Enter custom color"
-      />
-        <Button variant='warning' onClick= {handleApplyCustomColor}> Apply</Button>   
+        <ul>
+          {data.map((todo, index) => (
+            <li key={index}>{todo?.title}</li>
+          ))}
+        </ul>
         </>
-    );
-}
-export default Car;
-
+      )}
+    </>
+  );
+ }
+export default Example;
